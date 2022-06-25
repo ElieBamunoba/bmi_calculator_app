@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import './widgets/icon_content.dart';
 import './widgets/card.dart';
 
 const bottomContainerHeight = 80.0;
@@ -27,10 +30,14 @@ class _InputPageState extends State<InputPage> {
               Expanded(
                 child: ReusableCard(
                   color: activeCardColor,
+                  cardChild:
+                      IconContent(icon: FontAwesomeIcons.mars, lable: 'MALE'),
                 ),
               ),
               Expanded(
                 child: ReusableCard(
+                  cardChild:
+                      IconContent(icon: FontAwesomeIcons.venus, lable: 'FEMAL'),
                   color: activeCardColor,
                 ),
               )
@@ -40,6 +47,7 @@ class _InputPageState extends State<InputPage> {
             child: Row(children: [
               Expanded(
                 child: ReusableCard(
+                  cardChild: Text(""),
                   color: activeCardColor,
                 ),
               ),
@@ -50,11 +58,13 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
+                    cardChild: Text(""),
                     color: activeCardColor,
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
+                    cardChild: Text(""),
                     color: activeCardColor,
                   ),
                 )
