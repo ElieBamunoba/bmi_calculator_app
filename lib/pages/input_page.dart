@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import './widgets/icon_content.dart';
-import './widgets/card.dart';
+import '../widgets/icon_content.dart';
+import '../widgets/card.dart';
 
 const bottomContainerHeight = 80.0;
 const bottomContainerColor = Color(0xffeb1555);
