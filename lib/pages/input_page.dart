@@ -1,13 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../constants.dart';
 import '../widgets/icon_content.dart';
 import '../widgets/card.dart';
-
-const bottomContainerHeight = 80.0;
-const bottomContainerColor = Color(0xffeb1555);
-const activeCardColor = Color(0xff1d1e33);
-const inactiveCardColor = Color(0xff111328);
 
 enum Gender {
   male,
@@ -25,6 +21,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.unselected;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +41,8 @@ class _InputPageState extends State<InputPage> {
                     });
                   },
                   color: selectedGender == Gender.male
-                      ? activeCardColor
-                      : inactiveCardColor,
+                      ? kActiveCardColor
+                      : kInactiveCardColor,
                   cardChild:
                       IconContent(icon: FontAwesomeIcons.mars, lable: 'MALE'),
                 ),
@@ -60,18 +57,67 @@ class _InputPageState extends State<InputPage> {
                   cardChild:
                       IconContent(icon: FontAwesomeIcons.venus, lable: 'FEMAL'),
                   color: selectedGender == Gender.female
-                      ? activeCardColor
-                      : inactiveCardColor,
+                      ? kActiveCardColor
+                      : kInactiveCardColor,
                 ),
               )
             ]),
           ),
           Expanded(
-            child: Row(children: [
-              Expanded(
-                child: Text(""),
+            child: ReusableCard(
+              color: kActiveCardColor,
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text(
+                    "HEIGTH",
+                    style: kLabelTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    textBaseline: TextBaseline.alphabetic,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      const Text(
+                        "cm",
+                        style: kLabelTextStyle,
+                      ),
+                    ],
+                  ),
+                  SliderTheme(
+                    data: SliderTheme.of(context).copyWith(
+                      activeTrackColor: Colors.white,
+                      inactiveTrackColor: const Color(0xff8d8e98),
+                      overlayColor: const Color(0x29eb1555),
+                      thumbColor: const Color(0xffeb1555),
+                      thumbShape: const RoundSliderThumbShape(
+                        enabledThumbRadius: 15,
+                      ),
+                      overlayShape: const RoundSliderOverlayShape(
+                        overlayRadius: 30,
+                      ),
+                    ),
+                    child: Slider(
+                      value: height.toDouble(),
+                      min: 120,
+                      max: 220,
+                      onChanged: (double newHeight) {
+                        setState(
+                          () {
+                            height = newHeight.toInt().round();
+                          },
+                        );
+                      },
+                    ),
+                  )
+                ],
               ),
-            ]),
+              onPress: null,
+            ),
           ),
           Expanded(
             child: Row(
@@ -86,12 +132,12 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Container(
-            color: bottomContainerColor,
+            color: kBottomContainerColor,
             margin: const EdgeInsets.only(
               top: 10,
             ),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           )
         ],
       ),
