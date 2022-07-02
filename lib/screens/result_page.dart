@@ -8,11 +8,13 @@ class ResultPage extends StatelessWidget {
   final String bmiResult;
   final String resultText;
   final String interpretation;
+  final String idealWeight;
 
   const ResultPage({
     Key? key,
     required this.bmiResult,
     required this.resultText,
+    required this.idealWeight,
     required this.interpretation,
   }) : super(key: key);
 
@@ -45,11 +47,33 @@ class ResultPage extends StatelessWidget {
                 children: [
                   Text(
                     resultText.toUpperCase(),
-                    style: kResultTextStyle,
+                    style: (double.parse(bmiResult) > 18.5 &&
+                            double.parse(bmiResult) <= 25.0)
+                        ? kPositiveResultTextStyle
+                        : kNegativeResultTextStyle,
                   ),
                   Text(
                     bmiResult,
                     style: kBMITextStyle,
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        margin: const EdgeInsets.symmetric(horizontal: 5),
+                        child: const Text(
+                          'Ideal Weight Range For Your height:',
+                          textAlign: TextAlign.center,
+                          style: kLabelTextStyle,
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      Text(
+                        idealWeight,
+                        style: kPositiveResultTextStyle,
+                      ),
+                    ],
                   ),
                   Container(
                     margin: const EdgeInsets.symmetric(horizontal: 5),

@@ -29,8 +29,13 @@ const kTitleTextStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
-const kResultTextStyle = TextStyle(
+const kPositiveResultTextStyle = TextStyle(
   color: Color(0xff24d876),
+  fontSize: 22.0,
+  fontWeight: FontWeight.bold,
+);
+const kNegativeResultTextStyle = TextStyle(
+  color: Color(0xfffC4f4F),
   fontSize: 22.0,
   fontWeight: FontWeight.bold,
 );

@@ -222,6 +222,7 @@ class _InputPageState extends State<InputPage> {
                   builder: (context) => ResultPage(
                     bmiResult: bmiCalculator.calculateBMI(),
                     resultText: bmiCalculator.getBMIMessage(),
+                    idealWeight: bmiCalculator.idealWeight(),
                     interpretation: bmiCalculator.getInterception(),
                   ),
                 ),

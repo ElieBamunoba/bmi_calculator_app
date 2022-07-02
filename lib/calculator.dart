@@ -25,6 +25,12 @@ class Calculator {
     }
   }
 
+  String idealWeight() {
+    double minWeight = 18.5 * pow((height / 100), 2);
+    double maxWeight = 25.0 * pow((height / 100), 2);
+    return '${minWeight.toStringAsFixed(1)} Kg - ${maxWeight.toStringAsFixed(1)} Kg';
+  }
+
   String getInterception() {
     if (_bmi >= 25) {
       return 'You have a higher than normal body weight';
