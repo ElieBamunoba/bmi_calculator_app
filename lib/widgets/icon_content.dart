@@ -5,7 +5,8 @@ import '../constants.dart';
 class IconContent extends StatelessWidget {
   final IconData icon;
   final String lable;
-  IconContent({required this.icon, required this.lable});
+  const IconContent({Key? key, required this.icon, required this.lable})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

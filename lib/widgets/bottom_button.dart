@@ -3,8 +3,10 @@ import '../constants.dart';
 
 class ButtomButton extends StatelessWidget {
   final String buttonText;
-  final onPress;
-  ButtomButton({required this.buttonText, required this.onPress});
+  final dynamic onPress;
+  const ButtomButton(
+      {Key? key, required this.buttonText, required this.onPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

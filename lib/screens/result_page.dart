@@ -9,11 +9,13 @@ class ResultPage extends StatelessWidget {
   final String resultText;
   final String interpretation;
 
-  ResultPage({
+  const ResultPage({
+    Key? key,
     required this.bmiResult,
     required this.resultText,
     required this.interpretation,
-  });
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

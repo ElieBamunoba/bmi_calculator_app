@@ -4,11 +4,12 @@ import '../constants.dart';
 
 class RoundIconButton extends StatelessWidget {
   final IconData icon;
-  final onPress;
-  RoundIconButton({
+  final dynamic onPress;
+  const RoundIconButton({
+    Key? key,
     required this.icon,
     required this.onPress,
-  });
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
@@ -18,7 +19,7 @@ class RoundIconButton extends StatelessWidget {
         width: 56,
         height: 56,
       ),
-      shape: CircleBorder(),
+      shape: const CircleBorder(),
       fillColor: kButtonBackgroundColor,
       child: Icon(icon),
     );
