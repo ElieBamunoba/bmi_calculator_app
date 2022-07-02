@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../calculator.dart';
 import '../constants.dart';
+import '../widgets/bottom_button.dart';
 import '../widgets/icon_content.dart';
 import '../widgets/card.dart';
 import '../widgets/round_icon_button.dart';
@@ -207,29 +209,25 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          GestureDetector(
-            onTap: () {
+          ButtomButton(
+            onPress: () {
+              Calculator bmiCalculator = Calculator(
+                height: height,
+                weight: weight,
+              );
+
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ResultPage(),
+                  builder: (context) => ResultPage(
+                    bmiResult: bmiCalculator.calculateBMI(),
+                    resultText: bmiCalculator.getBMIMessage(),
+                    interpretation: bmiCalculator.getInterception(),
+                  ),
                 ),
               );
             },
-            child: Container(
-              color: kBottomContainerColor,
-              margin: const EdgeInsets.only(
-                top: 10,
-              ),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-              child: const Center(
-                child: Text(
-                  'CALCULATE ',
-                  style: kLargeButtonTextStyle,
-                ),
-              ),
-            ),
+            buttonText: "CALCULATE",
           )
         ],
       ),
