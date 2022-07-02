@@ -4,6 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../constants.dart';
 import '../widgets/icon_content.dart';
 import '../widgets/card.dart';
+import '../widgets/round_icon_button.dart';
+import 'result_page.dart';
 
 enum Gender {
   male,
@@ -22,6 +24,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.unselected;
   int height = 180;
+  int weight = 60;
+  int age = 19;
 
   @override
   Widget build(BuildContext context) {
@@ -123,21 +127,109 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: Text(""),
+                  child: ReusableCard(
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "WEIGHT",
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          weight.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () => setState(() {
+                                if (weight >= 1) weight--;
+                              }),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () => setState(() {
+                                weight++;
+                              }),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    onPress: null,
+                    color: kActiveCardColor,
+                  ),
                 ),
                 Expanded(
-                  child: Text(""),
+                  child: ReusableCard(
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "AGE",
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () => setState(() {
+                                if (age >= 1) age--;
+                              }),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () => setState(() {
+                                age++;
+                              }),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                    onPress: null,
+                    color: kActiveCardColor,
+                  ),
                 ),
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: const EdgeInsets.only(
-              top: 10,
+          GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultPage(),
+                ),
+              );
+            },
+            child: Container(
+              color: kBottomContainerColor,
+              margin: const EdgeInsets.only(
+                top: 10,
+              ),
+              width: double.infinity,
+              height: kBottomContainerHeight,
+              child: const Center(
+                child: Text(
+                  'CALCULATE ',
+                  style: kLargeButtonTextStyle,
+                ),
+              ),
             ),
-            width: double.infinity,
-            height: kBottomContainerHeight,
           )
         ],
       ),
